@@ -53,7 +53,14 @@ setInterval(async () => {
       const message = `Paid: ${amount}\nTraffic Source: ${trafficSource}\nBuyer Name: ${buyerName}\nService: ${service}\nServiceInfo: ${serviceInfo}`;
 
       for (const chatId of chatIds) {
-        await bot.sendMessage(chatId, message);
+        const encodedChatId = encodeURIComponent(String(chatId));
+        const url = `https://api.telegram.org/bot${telegramToken}/sendMessage?chat_id=${encodedChatId}&text=${encodeURIComponent(message)}`;
+  
+        try {
+          await axios.post(url);
+        } catch (error) {
+          console.error('Error sending message to Telegram:', error);
+        }
       }
     } else {
       lastYuliaValue = yuliaCheckbox;
