@@ -6,7 +6,9 @@ const airtableApiKey = 'key6iKNmX2Ynpo6k8';
 const airtableBase = 'appFRjFTs1w91uxZj';
 const airtableTable = 'Payments';
 const telegramToken = '6317272869:AAFmXuvtU1XafPuMxVC7rqIMLrF59P9TJVk';
-const chatId = '5272022550';
+const chatId = ['5272022550', '593152072']; // Add your chat IDs here
+
+
 
 let lastRecordTime = null;
 let lastYuliaValue = null;
