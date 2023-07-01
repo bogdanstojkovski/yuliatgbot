@@ -1,7 +1,7 @@
 {
-  "name": "telegrambotairtable",
+  "name": "yuliatgbot",
   "version": "1.0.0",
-  "description": "Telegram bot that fetches data from Airtable and sends notifications.",
+  "description": "send info to model",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
