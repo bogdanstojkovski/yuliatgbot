@@ -41,7 +41,9 @@ setInterval(async () => {
 
       const message = `Paid: ${amount}\nTraffic Source: ${trafficSource}\nBuyer Name: ${buyerName}\nService: ${service}\nServiceInfo: ${serviceInfo}`;
 
-      await bot.sendMessage(chatId, chatId1, message);
+      await bot.sendMessage(chatId, message);
+      await bot.sendMessage(chatId1, message);
+
     } else {
       lastYuliaValue = yuliaCheckbox;
     }
