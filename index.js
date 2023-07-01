@@ -1,28 +1,17 @@
 const axios = require('axios');
 const TelegramBot = require('node-telegram-bot-api');
-const express = require('express');
 
 const airtableApiKey = 'key6iKNmX2Ynpo6k8';
 const airtableBase = 'appFRjFTs1w91uxZj';
 const airtableTable = 'Payments';
 const telegramToken = '6317272869:AAFmXuvtU1XafPuMxVC7rqIMLrF59P9TJVk';
-const chatIds = ['5272022550', '593152072']; // Add your chat IDs here
+const chatId = '5272022550';
+const chatId1 = '593152072';
 
 let lastRecordTime = null;
 let lastYuliaValue = null;
 
 const bot = new TelegramBot(telegramToken, { polling: true });
-
-const app = express();
-const port = process.env.PORT || 3000;
-
-app.get('/', (req, res) => {
-  res.send('Hello World!'); // Replace this with your desired route handler or remove it if not needed
-});
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
 
 setInterval(async () => {
   try {
@@ -52,16 +41,7 @@ setInterval(async () => {
 
       const message = `Paid: ${amount}\nTraffic Source: ${trafficSource}\nBuyer Name: ${buyerName}\nService: ${service}\nServiceInfo: ${serviceInfo}`;
 
-      for (const chatId of chatIds) {
-        const encodedChatId = encodeURIComponent(String(chatId));
-        const url = `https://api.telegram.org/bot${telegramToken}/sendMessage?chat_id=${encodedChatId}&text=${encodeURIComponent(message)}`;
-  
-        try {
-          await axios.post(url);
-        } catch (error) {
-          console.error('Error sending message to Telegram:', error);
-        }
-      }
+      await bot.sendMessage(chatId, chatId1, message);
     } else {
       lastYuliaValue = yuliaCheckbox;
     }
