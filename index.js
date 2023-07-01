@@ -1,5 +1,6 @@
 const axios = require('axios');
 const TelegramBot = require('node-telegram-bot-api');
+const express = require('express');
 
 const airtableApiKey = 'key6iKNmX2Ynpo6k8';
 const airtableBase = 'appFRjFTs1w91uxZj';
@@ -11,6 +12,17 @@ let lastRecordTime = null;
 let lastYuliaValue = null;
 
 const bot = new TelegramBot(telegramToken, { polling: true });
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello World!'); // Replace this with your desired route handler or remove it if not needed
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
 
 setInterval(async () => {
   try {
